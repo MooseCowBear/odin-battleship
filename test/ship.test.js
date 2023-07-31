@@ -9,5 +9,11 @@ test('ship is sunk if the number of hits is equal to length', () => {
   const testShip = Ship(1);
   testShip.hit();
   expect(testShip.isSunk()).toBe(true);
-})
+});
 
+test('ship is sunk if the number of hits is greater than length', () => {
+  const testShip = Ship(1);
+  testShip.hit();
+  testShip.hit();
+  expect(testShip.isSunk()).toBe(true);
+})
