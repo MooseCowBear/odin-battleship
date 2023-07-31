@@ -1,0 +1,1 @@
+(()=>{console.log("up and running!");const n=document.createElement("p");n.textContent="YAY",document.body.appendChild(n)})();
