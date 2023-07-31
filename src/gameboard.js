@@ -20,7 +20,6 @@ const Gameboard = (shipLengths) => {
   const getBoard = () => board;
 
   const placeShip = (ship, x, y, vertical = true) => {
-    console.log(x, y, "STARTING COORDS");
     const validHorizontalPlacement = () => {
       for (let i = x; i < ship.getLength() + x; i += 1) {
         if (i >= DIMENSION || board[y][i] !== null) {
@@ -46,20 +45,15 @@ const Gameboard = (shipLengths) => {
         }
       } else {
         for (let i = x; i < ship.getLength() + x; i += 1) {
-          console.log("index, y", i, y);
           board[y][i] = ship;
         }
       }
     };
 
-    console.log("h", validHorizontalPlacement());
-    console.log("v", validVerticalPlacement());
-
     if (!(validHorizontalPlacement() || validVerticalPlacement())) {
       return false;
     }
     place();
-    console.log(board);
     return true;
   };
 
@@ -71,7 +65,6 @@ const Gameboard = (shipLengths) => {
     const validAttack = () => board[x][y] !== "hit" && board[x][y] !== "miss";
 
     if (!validAttack()) {
-      console.log("attack was invalid");
       return -1;
     }
 
