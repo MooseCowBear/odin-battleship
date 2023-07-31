@@ -58,22 +58,14 @@ const Gameboard = (shipLengths) => {
   };
 
   const receiveAttack = (x, y) => {
-    /* want to know if we got a hit, 
-      a miss or if the move was invalid.
-      hit = 1, miss = 0, invalid = -1
-    */
-    const validAttack = () => board[x][y] !== "hit" && board[x][y] !== "miss";
-
-    if (!validAttack()) {
-      return -1;
-    }
+    // want to know if got hit or miss, check for win if hit
 
     if (board[x][y] === null) {
       board[x][y] = "miss";
-      return 0;
+      return false;
     }
     board[x][y] = "hit";
-    return 1;
+    return true;
   };
 
   const allShipsSunk = () => {

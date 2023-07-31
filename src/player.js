@@ -10,17 +10,29 @@ export const Player = (name) => {
 };
 
 export const ComputerPlayer = () => {
-  const computer = Player('Hal');
+  const computer = Player("Hal");
 
   const isHuman = () => false;
 
-  const makeMove = () =>
+  const makeMove = (board) => {
     // a random move for now, of form x, y
-    // the onus of check legitimacy of a move is on gameboard receiveAttack
-    [
-      Math.floor(Math.random() * (9 - 0 + 1)),
-      Math.floor(Math.random() * (9 - 0 + 1)),
-    ];
+    const validAttack = (a, b) =>
+      board[b][a] !== "hit" && board[b][a] !== "miss";
+
+    const moves = [];
+
+    // get all the remaining valid moves
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        if (validAttack(i, j)) {
+          moves.push([i, j]);
+        }
+      }
+    }
+    // pick a random one
+    const max = moves.length - 1;
+    return moves[Math.floor(Math.random() * (max - 0 + 1))];
+  };
   return {
     ...computer,
     isHuman,

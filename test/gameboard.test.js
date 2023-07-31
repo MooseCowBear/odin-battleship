@@ -66,7 +66,7 @@ test("updates board with a miss if appropriate", () => {
   const testBoard = Gameboard([]);
   testBoard.placeShip(testShip, 0, 0);
   const res = testBoard.receiveAttack(2, 2);
-  expect(res).toBe(0);
+  expect(res).toBeFalsy();
   expect(testBoard.getBoard()[2][2]).toEqual("miss");
 });
 
@@ -75,24 +75,6 @@ test("updates board with a hit if appropriate", () => {
   const testBoard = Gameboard([]);
   testBoard.placeShip(testShip, 0, 0);
   const res = testBoard.receiveAttack(0, 0);
-  expect(res).toBe(1);
+  expect(res).toBeTruthy();
   expect(testBoard.getBoard()[0][0]).toEqual("hit");
-});
-
-test("does not update board if selected square has already been marked hit", () => {
-  const testShip = Ship(2);
-  const testBoard = Gameboard([]);
-  testBoard.placeShip(testShip, 0, 0);
-  testBoard.receiveAttack(0, 0);
-  const res = testBoard.receiveAttack(0, 0);
-  expect(res).toBe(-1);
-});
-
-test("does not update board if selected square has already been marked a miss", () => {
-  const testShip = Ship(2);
-  const testBoard = Gameboard([]);
-  testBoard.placeShip(testShip, 0, 0);
-  testBoard.receiveAttack(2, 2);
-  const res = testBoard.receiveAttack(2, 2);
-  expect(res).toBe(-1);
 });
