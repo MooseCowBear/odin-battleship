@@ -30,8 +30,7 @@ export const ComputerPlayer = () => {
       }
     }
     // pick a random one
-    const max = moves.length - 1;
-    return moves[Math.floor(Math.random() * (max - 0 + 1))];
+    return moves[Math.floor(Math.random() * moves.length)];
   };
   return {
     ...computer,
