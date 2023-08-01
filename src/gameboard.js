@@ -58,13 +58,12 @@ const Gameboard = (shipLengths) => {
   };
 
   const receiveAttack = (x, y) => {
-    // want to know if got hit or miss, check for win if hit
-
-    if (board[x][y] === null) {
-      board[x][y] = "miss";
+    if (board[y][x] === null) {
+      board[y][x] = "miss";
       return false;
     }
-    board[x][y] = "hit";
+    board[y][x].hit();
+    board[y][x] = "hit";
     return true;
   };
 
@@ -77,11 +76,14 @@ const Gameboard = (shipLengths) => {
     return true;
   };
 
+  const getShips = () => ships;
+
   return {
     getBoard,
     receiveAttack,
     placeShip,
     allShipsSunk,
+    getShips,
   };
 };
 
