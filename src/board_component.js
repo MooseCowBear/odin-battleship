@@ -45,5 +45,4 @@ export default function boardComponent(parent, inputBoard, clickable = true) {
       addElement("button", parent, classes, text, { "data-x": x, "data-y": y });
     }
   }
-  console.log(parent);
 }

@@ -1,5 +1,6 @@
 import boardComponent from "./board_component";
 import GameScreenController from "./game_screen_controller";
+import randomShipsPlacement from "./random_ship_placement";
 import shipsComponent from "./ships_component";
 
 function addDropListener(elem, player1, player2, player1Board, player2Board) {
@@ -25,7 +26,7 @@ function addDropListener(elem, player1, player2, player1Board, player2Board) {
       SetUpScreenController(player1, player2, player1Board, player2Board);
     } else if (placed) {
       // no unplaced ships
-      GameScreenController(player1, player2, player1Board, player2Board); 
+      GameScreenController(player1, player2, player1Board, player2Board);
     }
   }
 
@@ -42,15 +43,24 @@ const SetUpScreenController = (
   player1Board,
   player2Board
 ) => {
-  const setupDiv = document.getElementById("ships-setup");
+  const setupDiv = document.getElementById("player2board");
   const player1boardDiv = document.getElementById("player1board");
 
-  shipsComponent(setupDiv, player1Board.getShips());
+  shipsComponent(setupDiv, player1Board);
   boardComponent(player1boardDiv, player1Board, false);
 
   const dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((elem) => {
     addDropListener(elem, player1, player2, player1Board, player2Board);
+  });
+
+  const random = document.getElementById("random");
+  random.addEventListener("click", () => {
+    randomShipsPlacement(player1Board);
+
+    if (!player1Board.unPlacedShips()) {
+      GameScreenController(player1, player2, player1Board, player2Board);
+    }
   });
 };
 

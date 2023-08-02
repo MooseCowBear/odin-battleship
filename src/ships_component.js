@@ -1,13 +1,14 @@
 import { addElement } from "./view_helpers";
 
-export default function shipsComponent(parent, ships) {
+export default function shipsComponent(parent, player1Board) {
+  const ships = player1Board.getShips();
+
   function drag(e) {
     e.dataTransfer.setData("text", e.target.id);
-    console.log("dragging", e.target);
   }
 
   function flipShip(e) {
-    const wrapper = e.target.closest('.wrapper');
+    const wrapper = e.target.closest(".wrapper");
     const index = parseInt(wrapper.id.slice(-1), 10);
     const ship = ships[index];
     ship.flipOrientation();
@@ -28,7 +29,21 @@ export default function shipsComponent(parent, ships) {
     "gap-5",
     "justify-around",
   ]);
-  addElement("h2", component, ["text-xl"], "Add Ships");
+  const titleWrapper = addElement("div", component, ["flex", "gap-5"]);
+  addElement(
+    "h2",
+    titleWrapper,
+    ["text-xl", "font-semibold"],
+    "Add Your Ships"
+  );
+  addElement("button", titleWrapper, [], "Random Placement", { id: "random" });
+
+  addElement(
+    "p",
+    component,
+    ["max-w-prose"],
+    "Doubleclick to change ship orientation. Drag and drop ships to desired locations. Or choose a random placement."
+  );
 
   let id = 0;
 
@@ -37,7 +52,7 @@ export default function shipsComponent(parent, ships) {
       const classes = ["flex", "gap-1", "wrapper"];
       if (!ship.isHorizontal()) {
         classes.push("flex-col");
-      } 
+      }
       const shipWrapper = addElement("div", component, classes, "", {
         draggable: true,
         id: `ship-${id}`,
@@ -56,7 +71,6 @@ export default function shipsComponent(parent, ships) {
           front,
         ]); // will change
       }
-      console.log(component);
     }
     id += 1;
   });
