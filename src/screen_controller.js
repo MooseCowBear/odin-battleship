@@ -14,13 +14,12 @@ const ScreenController = (playerName) => {
   let gameOver = false;
 
   const updateScreen = () => {
-    console.log("update screen called...");
     const currPlayer = game.getCurrentPlayer();
 
     if (gameOver) {
-      annoucementDiv.textContent = `${currPlayer.getName()} wins!`; // check this is right
+      annoucementDiv.textContent = currPlayer.isHuman() ? "You win!" : "Computer wins!"
     } else {
-      annoucementDiv.textContent = `${currPlayer.getName()}'s turn.`;
+      annoucementDiv.textContent = currPlayer.isHuman() ? "Your turn." : "Computer's turn.";
     }
 
     // need to redraw this board... really only need to redraw the last one...

@@ -26,12 +26,12 @@ const randomShipsPlacement = (board) => {
   });
 };
 
-const SetupController = (playerName) => {
+const SetupController = () => {
   /* going to take user input from form and create players and 
     boards and then let the setup screen controller get user input for ship placement? 
     if add two player this is going to change
   */
-  const player1 = Player(playerName);
+  const player1 = Player();
   const player2 = ComputerPlayer();
 
   const player1Board = Gameboard([5, 4, 3, 3, 2]);

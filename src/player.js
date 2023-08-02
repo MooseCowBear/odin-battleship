@@ -1,17 +1,12 @@
-export const Player = (name) => {
-  const getName = () => name;
-
+export const Player = () => {
   const isHuman = () => true;
 
   return {
-    getName,
     isHuman,
   };
 };
 
 export const ComputerPlayer = () => {
-  const computer = Player("Hal");
-
   const isHuman = () => false;
 
   const makeMove = (board) => {
@@ -32,8 +27,8 @@ export const ComputerPlayer = () => {
     // pick a random one
     return moves[Math.floor(Math.random() * moves.length)];
   };
+  
   return {
-    ...computer,
     isHuman,
     makeMove,
   };
