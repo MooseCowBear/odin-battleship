@@ -10,11 +10,14 @@ export default function boardComponent(parent, board, clickable = true) {
   for (let y = 0; y < board.length; y += 1) {
     for (let x = 0; x < board.length; x += 1) {
       const classes = [
-        "h-10",
-        "p-5",
+        "h-8",
+        "w-8",
+        "sm:h-10",
+        "sm:w-10",
         "flex",
         "items-center",
         "justify-center",
+        "rounded-sm",
       ];
       let text = " ";
       if (board[y][x] === "miss") {

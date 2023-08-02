@@ -1,8 +1,3 @@
-/* this is going to control the drawing of the screen and 
-  the calling of game and setup controllers
-  gets called when the form for player input is submitted? 
-*/
-
 import SetupController from "./setup_controller";
 import boardComponent from "./board_component";
 import GameController from "./game_controller";
@@ -14,12 +9,6 @@ const ScreenController = (playerName) => {
 
   const { player1, player2, player1Board, player2Board } =
     SetupController(playerName);
-
-  // need to call the view that will allow a human player to place their ships
-
-  //
-  console.log(player1Board.getBoard());
-  console.log(player2Board.getBoard());
 
   const game = GameController(player1, player2, player1Board, player2Board);
   let gameOver = false;
@@ -59,9 +48,9 @@ const ScreenController = (playerName) => {
     }
   };
 
+  // this is what starts the game.. the click handler is what advances it
   player2boardDiv.addEventListener("click", clickHandler);
-  console.log("should be creating the start screen");
-  updateScreen();
+  updateScreen(); 
 };
 
 export default ScreenController;
