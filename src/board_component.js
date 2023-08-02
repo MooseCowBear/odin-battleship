@@ -2,14 +2,16 @@
 
 import { addElement } from "./view_helpers";
 
-export default function boardComponent(parent, board, clickable = true) {
+export default function boardComponent(parent, inputBoard, clickable = true) {
   // going to be 100 buttons, arranged in a grid...
   // clickable indicates that it should not show ships too...
   parent.textContent = "";
+  const board = inputBoard.getBoard();
 
   for (let y = 0; y < board.length; y += 1) {
     for (let x = 0; x < board.length; x += 1) {
       const classes = [
+        "drop-target",
         "h-8",
         "w-8",
         "sm:h-10",
@@ -37,12 +39,10 @@ export default function boardComponent(parent, board, clickable = true) {
         classes.push("text-zinc-900");
       }
 
-      const btn = addElement("button", parent, classes, text);
-      btn.dataset.x = x;
-      btn.dataset.y = y;
-      if (!clickable) {
-        btn.disabled = true;
+      if (clickable) {
+        classes.push("cursor-default");
       }
+      addElement("button", parent, classes, text, { "data-x": x, "data-y": y });
     }
   }
   console.log(parent);
