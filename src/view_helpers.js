@@ -5,12 +5,17 @@ export function addElement(
   parent,
   classes,
   textContent = "",
+  options = {}
 ) {
   const elem = document.createElement(type);
   parent.appendChild(elem);
   elem.classList.add(...classes);
 
   if (textContent) elem.textContent = textContent;
+
+  for (const o in options) {
+    elem.setAttribute(o, options[o]);
+  }
 
   return elem;
 }
