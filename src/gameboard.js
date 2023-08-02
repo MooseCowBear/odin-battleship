@@ -5,7 +5,6 @@ const Gameboard = (shipLengths) => {
   const board = Array(DIMENSION)
     .fill(null)
     .map(() => Array(DIMENSION).fill(null));
-  // will let players place ships, even computer player
 
   const generateShips = () => {
     const arr = [];
@@ -19,7 +18,7 @@ const Gameboard = (shipLengths) => {
 
   const getBoard = () => board;
 
-  const placeShip = (ship, x, y, vertical = true) => {
+  const placeShip = (ship, x, y, vertical) => {
     const validHorizontalPlacement = () => {
       for (let i = x; i < ship.getLength() + x; i += 1) {
         if (i >= DIMENSION || board[y][i] !== null) {
@@ -42,10 +41,12 @@ const Gameboard = (shipLengths) => {
       if (vertical) {
         for (let i = y; i < ship.getLength() + y; i += 1) {
           board[i][x] = ship;
+          ship.setPosition(x, i);
         }
       } else {
         for (let i = x; i < ship.getLength() + x; i += 1) {
           board[y][i] = ship;
+          ship.setPosition(i, y);
         }
       }
     };
@@ -78,12 +79,15 @@ const Gameboard = (shipLengths) => {
 
   const getShips = () => ships;
 
+  const unPlacedShips = () => ships.some(ship => ship.getPosition() === null)
+
   return {
     getBoard,
     receiveAttack,
     placeShip,
     allShipsSunk,
     getShips,
+    unPlacedShips
   };
 };
 
