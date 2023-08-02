@@ -35,7 +35,7 @@ export default function boardComponent(parent, inputBoard, clickable = true) {
         classes.push("bg-red-400");
         classes.push("text-red-900"); // a color to indicate ships? only on own board
       } else {
-        classes.push("bg-zinc-300");
+        classes.push("bg-zinc-300/[.6]");
         classes.push("text-zinc-900");
       }
 

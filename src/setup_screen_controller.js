@@ -46,6 +46,24 @@ const SetUpScreenController = (
   const setupDiv = document.getElementById("player2board");
   const player1boardDiv = document.getElementById("player1board");
 
+  // need to remove classes, add classes
+  const toAdd = ["flex", "flex-col", "gap-4"];
+  const toRemove = [
+    "grid",
+    "grid-cols-10",
+    "grid-rows-10",
+    "gap-1",
+    "grow-0",
+    "max-h-fit",
+    "max-w-fit",
+  ];
+
+  setupDiv.classList.remove(...toRemove);
+  setupDiv.classList.add(...toAdd);
+
+  const annoucement = document.getElementById("annoucement");
+  annoucement.textContent = "";
+
   shipsComponent(setupDiv, player1Board);
   boardComponent(player1boardDiv, player1Board, false);
 
