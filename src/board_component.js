@@ -12,8 +12,8 @@ export default function boardComponent(parent, inputBoard, clickable = true) {
     for (let x = 0; x < board.length; x += 1) {
       const classes = [
         "drop-target",
-        "h-8",
-        "w-8",
+        "h-6",
+        "w-6",
         "sm:h-10",
         "sm:w-10",
         "flex",

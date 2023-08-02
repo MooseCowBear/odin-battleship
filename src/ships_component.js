@@ -63,8 +63,8 @@ export default function shipsComponent(parent, player1Board) {
       for (let i = 0; i < ship.getLength(); i += 1) {
         const front = i > 0 ? "bg-zinc-400" : "bg-zinc-500";
         addElement("div", shipWrapper, [
-          "h-8",
-          "w-8",
+          "h-6",
+          "w-6",
           "sm:h-10",
           "sm:w-10",
           "rounded-sm",

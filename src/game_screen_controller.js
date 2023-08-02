@@ -5,8 +5,16 @@ const GameScreenController = (player1, player2, player1Board, player2Board) => {
   const player1boardDiv = document.getElementById("player1board");
   const player2boardDiv = document.getElementById("player2board");
 
-  const toRemove = ["flex", "flex-col", "items-center", "gap-4"];
-  const toAdd = ["grid", "grid-cols-10", "grid-rows-10", "gap-1"];
+  const toRemove = ["flex", "flex-col", "gap-4"];
+  const toAdd = [
+    "grid",
+    "grid-cols-10",
+    "grid-rows-10",
+    "gap-1",
+    "grow-0",
+    "max-h-fit",
+    "max-w-fit",
+  ];
   player2boardDiv.classList.remove(...toRemove);
   player2boardDiv.classList.add(...toAdd);
 
