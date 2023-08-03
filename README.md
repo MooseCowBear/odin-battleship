@@ -14,6 +14,7 @@ An implementation of Battleship for the [Odin Project](https://www.theodinprojec
 - Tailwind
 - Eslint
 - Prettier
+- Jest
 
 ### Screenshots
 
