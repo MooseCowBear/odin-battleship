@@ -3,7 +3,7 @@ import SetupController from "./setup_controller";
 import SetUpScreenController from "./setup_screen_controller";
 import "./style.css";
 
-(function () {
+(function loadScreen() {
   const newGameBtn = document.getElementById("new-game");
 
   newGameBtn.addEventListener("click", () => {
