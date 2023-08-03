@@ -47,8 +47,6 @@ const GameScreenController = (player1, player2, player1Board, player2Board) => {
     const currPlayer = game.getCurrentPlayer();
 
     if (e.target.tagName.toLowerCase() === "button" && currPlayer.isHuman()) {
-      console.log(e.target.dataset.x, e.target.dataset.y);
-
       gameOver = !game.takeTurn(
         parseInt(e.target.dataset.x, 10),
         parseInt(e.target.dataset.y, 10)

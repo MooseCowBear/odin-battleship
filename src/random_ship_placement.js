@@ -20,7 +20,6 @@ const randomShipsPlacement = (board) => {
       }
     }
   });
-  console.log(board.getBoard());
 };
 
 export default randomShipsPlacement

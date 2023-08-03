@@ -82,8 +82,8 @@ export default function shipsComponent(parent, player1Board) {
           i > 0
             ? colors[`${ship.getLength()}`]
             : startColors[`${ship.getLength()}`];
-        console.log(color);
-        const x = addElement("div", shipWrapper, [
+
+        addElement("div", shipWrapper, [
           "h-6",
           "w-6",
           "sm:h-10",
@@ -91,7 +91,6 @@ export default function shipsComponent(parent, player1Board) {
           "rounded-sm",
           color,
         ]);
-        console.log(x);
       }
     }
     id += 1;
