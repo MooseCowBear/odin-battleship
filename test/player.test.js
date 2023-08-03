@@ -20,3 +20,12 @@ test("computer move x and y are in range of 0 - 9", () => {
   expect(y).toBeGreaterThanOrEqual(0);
   expect(y).toBeLessThanOrEqual(9);
 });
+
+test("computer chooses sqaure next to hit when one is available", () => {
+  const testComputer = ComputerPlayer();
+  const testBoard = Array(10)
+    .fill(null)
+    .map(() => Array(10).fill(null));
+  testBoard[0][0] = "hit";
+  expect([[0, 1], [1, 0]]).toContainEqual(testComputer.makeMove(testBoard));
+});
