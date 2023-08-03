@@ -1,6 +1,9 @@
 import { addElement } from "./view_helpers";
+import { shipColors, shipColorsStart } from "./ship_colors";
 
 export default function shipsComponent(parent, player1Board) {
+  const colors = shipColors();
+  const startColors = shipColorsStart();
   const ships = player1Board.getShips();
 
   function drag(e) {
@@ -13,7 +16,7 @@ export default function shipsComponent(parent, player1Board) {
     const ship = ships[index];
     ship.flipOrientation();
 
-    // need to swap out classes on shipwrapper
+    // for redrawing the ship
     if (ship.isHorizontal()) {
       wrapper.classList.remove("flex-col");
     } else {
@@ -33,15 +36,29 @@ export default function shipsComponent(parent, player1Board) {
   addElement(
     "h2",
     titleWrapper,
-    ["text-xl", "font-semibold"],
+    ["text-xl", "font-semibold", "flex", "items-center", "gap-5"],
     "Add Your Ships"
   );
-  addElement("button", titleWrapper, [], "Random Placement", { id: "random" });
+  addElement(
+    "button",
+    titleWrapper,
+    [
+      "border-2",
+      "border-gray-800",
+      "p-2",
+      "rounded",
+      "hover:border-gray-100",
+      "hover:bg-gray-800",
+      "hover:text-gray-100",
+    ],
+    "Random Placement",
+    { id: "random" }
+  );
 
   addElement(
     "p",
     component,
-    ["max-w-prose"],
+    ["max-w-[45ch]"],
     "Doubleclick to change ship orientation. Drag and drop ships to desired locations. Or choose a random placement."
   );
 
@@ -61,15 +78,20 @@ export default function shipsComponent(parent, player1Board) {
       shipWrapper.addEventListener("dblclick", flipShip);
 
       for (let i = 0; i < ship.getLength(); i += 1) {
-        const front = i > 0 ? "bg-zinc-400" : "bg-zinc-500";
-        addElement("div", shipWrapper, [
+        const color =
+          i > 0
+            ? colors[`${ship.getLength()}`]
+            : startColors[`${ship.getLength()}`];
+        console.log(color);
+        const x = addElement("div", shipWrapper, [
           "h-6",
           "w-6",
           "sm:h-10",
           "sm:w-10",
           "rounded-sm",
-          front,
-        ]); // will change
+          color,
+        ]);
+        console.log(x);
       }
     }
     id += 1;
