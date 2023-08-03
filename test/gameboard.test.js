@@ -8,10 +8,10 @@ test("creates 10x10 gameboard", () => {
   expect(testBoard.getBoard()[0][0]).toBeNull();
 });
 
-test("places ship vertically when there is room", () => {
+test("places ship vertically when there is room", () => { 
   const testShip = Ship(2);
   const testBoard = Gameboard([]);
-  const res = testBoard.placeShip(testShip, 0, 0);
+  const res = testBoard.placeShip(testShip, 0, 0, true);
   expect(testBoard.getBoard()[0][0]).not.toBeNull();
   expect(testBoard.getBoard()[1][0]).not.toBeNull();
   expect(res).toBeTruthy();
@@ -29,7 +29,7 @@ test("places ship horizontally when there is room", () => {
 test("does not place ship when ship would overflow board vertically", () => {
   const testShip = Ship(2);
   const testBoard = Gameboard([]);
-  const res = testBoard.placeShip(testShip, 0, 9);
+  const res = testBoard.placeShip(testShip, 0, 9, true);
   expect(res).toBeFalsy();
   expect(testBoard.getBoard()[9][0]).toBeNull();
 });
@@ -46,7 +46,7 @@ test("does not place ship when another ship is in the way", () => {
   const shipOne = Ship(8);
   const testShip = Ship(3);
   const testBoard = Gameboard([]);
-  testBoard.placeShip(shipOne, 0, 0);
+  testBoard.placeShip(shipOne, 0, 0, true);
   const res = testBoard.placeShip(testShip, 0, 7);
   expect(res).toBeFalsy();
 });
@@ -77,4 +77,20 @@ test("updates board with a hit if appropriate", () => {
   const res = testBoard.receiveAttack(0, 0);
   expect(res).toBeTruthy();
   expect(testBoard.getBoard()[0][0]).toEqual("hit");
+});
+
+test("returns the correct number of ships", () => {
+  const testBoard = Gameboard([1, 1, 1]);
+  expect(testBoard.getShips().length).toBe(3);
+});
+
+test("reports there are unplaced ships when there are", () => {
+  const testBoard = Gameboard([1, 1, 1]);
+  expect(testBoard.unPlacedShips()).toBeTruthy();
+});
+
+test("reports there are no unplaced ships where there are none", () => {
+  const testBoard = Gameboard([1]);
+  testBoard.getShips()[0].setPosition(0, 0);
+  expect(testBoard.unPlacedShips()).toBeFalsy();
 });
