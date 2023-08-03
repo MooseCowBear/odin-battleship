@@ -1,13 +1,8 @@
 import { Player, ComputerPlayer } from "../src/player";
 import Gameboard from "../src/gameboard";
 
-test("getName returns player name", () => {
-  const testPlayer = Player("Suzie");
-  expect(testPlayer.getName()).toEqual("Suzie");
-});
-
 test("player is human", () => {
-  const testPlayer = Player("Malek");
+  const testPlayer = Player();
   expect(testPlayer.isHuman()).toBeTruthy();
 });
 
